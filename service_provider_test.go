@@ -1433,8 +1433,10 @@ func TestXswPermutationSevenIsRejected(t *testing.T) {
 	req.PostForm.Set("SAMLResponse", string(respStr))
 	_, err = s.ParseResponse(&req, []string{"ONELOGIN_4fee3b046395c4e751011e97f8900b5273d56685"})
 	// It's the assertion signature that can't be verified. The error message is generic and always mentions Response
+	// goxmldsig v1.6 verifies the SignedInfo signature before the digest, so
+	// the wrapped assertion fails on the signature value.
 	assert.Check(t, is.Error(err.(*InvalidResponseError).PrivateErr,
-		"cannot validate signature on Assertion: Signature could not be verified"))
+		"cannot validate signature on Assertion: crypto/rsa: verification error"))
 }
 
 func TestXswPermutationEightIsRejected(t *testing.T) {
@@ -1464,8 +1466,10 @@ func TestXswPermutationEightIsRejected(t *testing.T) {
 	req.PostForm.Set("SAMLResponse", string(respStr))
 	_, err = s.ParseResponse(&req, []string{"ONELOGIN_4fee3b046395c4e751011e97f8900b5273d56685"})
 	// It's the assertion signature that can't be verified. The error message is generic and always mentions Response
+	// goxmldsig v1.6 verifies the SignedInfo signature before the digest, so
+	// the wrapped assertion fails on the signature value.
 	assert.Check(t, is.Error(err.(*InvalidResponseError).PrivateErr,
-		"cannot validate signature on Assertion: Signature could not be verified"))
+		"cannot validate signature on Assertion: crypto/rsa: verification error"))
 }
 
 func TestXswPermutationNineIsRejected(t *testing.T) {
