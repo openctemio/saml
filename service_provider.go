@@ -1337,10 +1337,13 @@ func (sp *ServiceProvider) validateSignature(el *etree.Element) error {
 	if err != nil {
 		return fmt.Errorf("cannot validate signature on %s: %v", el.Tag, err)
 	}
-	el, err = etreeutils.NSDetatch(ctx, el)
+	detached, err := etreeutils.NSDetatch(ctx, el)
 	if err != nil {
+		// NSDetatch returns a nil element with its error (for example when
+		// the element exceeds the signature library's traversal limit).
 		return fmt.Errorf("cannot validate signature on %s: %v", el.Tag, err)
 	}
+	el = detached
 
 	if sp.SignatureVerifier != nil {
 		return sp.SignatureVerifier.VerifySignature(validationContext, el)
