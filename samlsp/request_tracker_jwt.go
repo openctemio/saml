@@ -7,7 +7,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/crewjam/saml"
+	"github.com/openctemio/saml"
 )
 
 // JWTTrackedRequestCodec encodes TrackedRequests as signed JWTs

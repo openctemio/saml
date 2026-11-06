@@ -1,5 +1,11 @@
 # SAML
 
+> This is the OpenCTEM fork of [github.com/crewjam/saml](https://github.com/crewjam/saml)
+> by Ross Kinder and contributors, under the same BSD 2-Clause licence (see `LICENSE`).
+> The `openctem/v0.5.x` branch is upstream v0.5.1 plus the fix for GO-2026-6909
+> (sent upstream as crewjam/saml#674), with the module path changed to
+> `github.com/openctemio/saml`. It will be retired once an upstream release carries the fix.
+
 [![](https://godoc.org/github.com/crewjam/saml?status.svg)](http://godoc.org/github.com/crewjam/saml)
 
 ![Build Status](https://github.com/crewjam/saml/actions/workflows/test.yml/badge.svg)
